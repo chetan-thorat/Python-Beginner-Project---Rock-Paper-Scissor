@@ -1,0 +1,56 @@
+# don't for to mention random library guys 
+
+import random
+
+# Define the dictionary for options
+options = {1: "Rock", 2: "Paper", 3: "Scissors"}
+
+# Function to determine the winner
+def determine_winner(user_choice, computer_choice):
+    if user_choice == computer_choice:
+        return "It's a tie!"
+    elif (
+        (user_choice == 1 and computer_choice == 3)
+        or (user_choice == 2 and computer_choice == 1)
+        or (user_choice == 3 and computer_choice == 2)
+    ):
+        return "You win!"
+    else:
+        return "Computer wins!"
+
+while True:
+    # Display the menu
+    print("Options:")
+    for key, value in options.items():
+        print(f"{key}: {value}")
+    print("4: Quit")
+
+    # Get user choice
+    try:
+        user_choice = int(input("Select an option (1-3) or 4 to quit: "))
+    except ValueError:
+        print("Invalid input. Please enter a number.")
+        continue
+
+    # Check if user wants to quit
+    if user_choice == 4:
+        break
+
+    # Check if the user's choice is valid
+    if user_choice not in options:
+        print("Invalid choice. Please select 1, 2, or 3.")
+        continue
+
+    # Generate the computer's choice
+    computer_choice = random.randint(1, 3)
+
+    # Display choices
+    print(f"You chose: {options[user_choice]}")
+    print(f"Computer chose: {options[computer_choice]}")
+
+    # Determine the winner and display the result
+    result = determine_winner(user_choice, computer_choice)
+    print(result)
+
+# End of the game
+print("Thanks for playing!")
